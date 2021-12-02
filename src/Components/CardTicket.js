@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
+import { Card, CardBody, CardTitle, CardSubtitle, CardText, Badge, Button } from 'reactstrap'
+import './CardTicket.css'
+
 export const CardTicket = ({ data }) => {
     return (
         <Card>
@@ -8,17 +10,20 @@ export const CardTicket = ({ data }) => {
                     {`${data.sequence_id} - ${data.ticket_name}`}
                 </CardTitle>
                 <CardSubtitle
-                    className="mb-2 text-muted"
+                    className="mb-2 text-muted truncate"
                     tag="h6"
                 >
-                    Card subtitle
+                    {`${data.ticket_desc}`}
                 </CardSubtitle>
-                {/* <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </CardText> */}
-                {/* <Button>
-                    Button
-                </Button> */}
+                <div className='d-flex' style={{ margin: '-4px' }}>
+                    <Badge color="info" style={{ margin: '4px' }}>
+                        {`${data.customer_name}`}
+                    </Badge>
+                    <Badge color={data.status.toLowerCase() == 'todo' ? 'warning' : data.status.toLowerCase() == 'on progress' ? 'primary' : data.status.toLowerCase() == 'finished' ? 'success' : 'secondary'} style={{ margin: '4px' }}>
+                        {`${data.status}`}
+                    </Badge>
+                    <div className='ms-auto text-link'>{`Detail >`}</div>
+                </div>
             </CardBody>
         </Card>
     )

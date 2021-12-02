@@ -2,8 +2,10 @@ import React from 'react'
 import { Button, Input } from 'reactstrap'
 import { FaPlus } from 'react-icons/fa'
 import { CardList } from '../Components/CardList'
+import { useNavigate } from 'react-router-dom'
 
 export const Tasks = () => {
+    const navigate = useNavigate();
     return (
         <div className='p-4'>
             <h3 className='border-bottom pb-2'>Tasks</h3>
@@ -12,7 +14,7 @@ export const Tasks = () => {
                     <Input placeholder='Search ticket' />
                 </div>
                 <div>
-                    <Button className="btn btn-success">
+                    <Button className="btn btn-success" onClick={() => navigate('/tasks/create')}>
                         <FaPlus className="me-2"  />
                         Create Ticket
                     </Button>

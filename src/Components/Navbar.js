@@ -5,8 +5,8 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { useMatch, useNavigate } from 'react-router-dom'
 
 const Topmenu = () => {
-    const dashboard = useMatch('/dashboard');
-    const tasks = useMatch('/tasks');
+    const dashboard = useMatch('/dashboard/*');
+    const tasks = useMatch('/tasks/*');
     const navigate = useNavigate();
 
     const changeRoute = (route) => {

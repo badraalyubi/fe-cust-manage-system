@@ -5,6 +5,7 @@ import Main from './Pages/Main';
 import Blank from './Pages/Blank';
 import { Dashboard } from './Views/Dashboard';
 import { Tasks } from './Views/Tasks';
+import { TaskEditor } from './Views/TaskEditor';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path='/' element={<Main />} exact>
             <Route path='dashboard' element={<Dashboard />} exact />
             <Route path='tasks' element={<Tasks />} />
+            <Route path='tasks/create' element={<TaskEditor />} />
           </Route>
           <Route path='/login' element={<Blank />} />
         </Routes>

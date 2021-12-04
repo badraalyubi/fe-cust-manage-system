@@ -3,6 +3,7 @@ import React from 'react'
 import { Navbar, NavbarBrand, Collapse, NavbarToggler, Nav, NavItem, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, ButtonGroup } from 'reactstrap';
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { useMatch, useNavigate } from 'react-router-dom'
+import { logout } from '../services/api';
 
 const Topmenu = () => {
     const dashboard = useMatch('/dashboard/*');
@@ -11,6 +12,13 @@ const Topmenu = () => {
 
     const changeRoute = (route) => {
         navigate(route);
+    }
+
+    const logoutUser = async () => {
+        const isLogout = await logout();
+        if (isLogout) {
+            navigate('/login');
+        }
     }
     return (
         <div>
@@ -31,7 +39,7 @@ const Topmenu = () => {
                     >
                         <NavItem className="ms-auto" style={{ marginRight: '24px' }}>
                             <ButtonGroup className='border rounded-pill'>
-                                <Button color={dashboard ? 'secondary' : 'transparent'} className='rounded-pill' onClick={() => changeRoute('/dashb')}>
+                                <Button color={dashboard ? 'secondary' : 'transparent'} className='rounded-pill' onClick={() => changeRoute('/dashboard')}>
                                     Dashboard
                                 </Button>
                                 <Button color={tasks ? 'secondary' : 'transparent'} className='rounded-pill' onClick={() => changeRoute('/tasks')}>
@@ -45,7 +53,7 @@ const Topmenu = () => {
                                 Customer
                             </DropdownToggle>
                             <DropdownMenu end>
-                                <DropdownItem>
+                                <DropdownItem onClick={logoutUser}>
                                     <FaSignOutAlt className='me-2' />
                                     Logout
                                 </DropdownItem>

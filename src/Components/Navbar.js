@@ -4,11 +4,13 @@ import { Navbar, NavbarBrand, Collapse, NavbarToggler, Nav, NavItem, Uncontrolle
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { useMatch, useNavigate } from 'react-router-dom'
 import { logout } from '../services/api';
+import { getUser } from '../services/utils';
 
 const Topmenu = () => {
     const dashboard = useMatch('/dashboard/*');
     const tasks = useMatch('/tasks/*');
     const navigate = useNavigate();
+    const [user, setUser] = React.useState(null);
 
     const changeRoute = (route) => {
         navigate(route);
@@ -20,6 +22,10 @@ const Topmenu = () => {
             navigate('/login');
         }
     }
+
+    React.useEffect(() => {
+        setUser(getUser());
+    }, [])
     return (
         <div>
             <Navbar
@@ -50,7 +56,7 @@ const Topmenu = () => {
                         <UncontrolledDropdown>
                             <DropdownToggle caret nav>
                                 <FaUserCircle className='me-2' />
-                                Customer
+                                {user ? user.fullname : 'User'}
                             </DropdownToggle>
                             <DropdownMenu end>
                                 <DropdownItem onClick={logoutUser}>

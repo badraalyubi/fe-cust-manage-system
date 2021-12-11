@@ -14,11 +14,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main />} exact>
-            <Route path='dashboard' element={<Dashboard />} />
-            <Route path='tasks' element={<Tasks />} />
+            <Route path='dashboard' element={<Dashboard />} index />
+            <Route index path='tasks' element={<Tasks />} />
             <Route path='tasks/create' element={<TaskEditor />} />
+            <Route path='tasks/:id' element={<TaskEditor />} />
           </Route>
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

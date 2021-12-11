@@ -61,12 +61,13 @@ const dummyData = [
     }
 ]
 export const CardList = (props) => {
+    const { data } = props
     return (
         <div className='py-3'>
             <Row>
-                {dummyData.map((data, index) => (
+                {data.map((d, index) => (
                     <Col key={index} md={3} className='pb-3'>
-                        <CardTicket data={data} />
+                        <CardTicket data={d} />
                     </Col>
                 ))}
             </Row>

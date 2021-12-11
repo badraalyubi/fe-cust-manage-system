@@ -20,10 +20,11 @@ const api = ky.create({
 
 const getHeaders = () => {
     let headers;
-    const user = localStorage.getItem('user');
+    let user = localStorage.getItem('token');
+    user = user.replace(/\"/g, '');
     if (user) {
         headers = {
-            Authorization: `Bearer ${user.accessToken}`,
+            Authorization: `Bearer ${user}`,
         }
     }
     return headers;
@@ -56,12 +57,19 @@ export function register(url, data = null) {
 // post method
 export async function post(url, data = null) {
     const headers = getHeaders();
-    return api.post(url, { json: data, headers }).json();
+    return api.post(url, { body: data, headers }).json();
+}
+
+// put method
+export async function put(url, data = null) {
+    const headers = getHeaders();
+    return api.put(url, { body: data, headers }).json();
 }
 
 // get method
 export async function get(url, data = null) {
     const headers = getHeaders();
+    console.log(headers);
     return api.get(url, { searchParams: data, headers }).json();
 }
 

@@ -29,12 +29,13 @@ const Topmenu = () => {
     return (
         <div>
             <Navbar
-                color="light"
+                // color="light"
                 expand="md"
                 light
                 className='px-3'
+                style={{ backgroundColor: '#406882' }}
             >
-                <NavbarBrand href="/">
+                <NavbarBrand href="/" className='text-white'>
                     Customer Management System
                 </NavbarBrand>
                 <NavbarToggler onClick={function noRefCheck() { }} />
@@ -44,19 +45,19 @@ const Topmenu = () => {
                         navbar
                     >
                         <NavItem className="ms-auto" style={{ marginRight: '24px' }}>
-                            <ButtonGroup className='border rounded-pill'>
-                                <Button color={dashboard ? 'secondary' : 'transparent'} className='rounded-pill' onClick={() => changeRoute('/dashboard')}>
+                            <ButtonGroup className='rounded-pill'>
+                                <Button style={{ backgroundColor: dashboard ? '#fff' : '#406882', color: dashboard ? '#406882' : '#fff' }} color="default" className='rounded-pill' onClick={() => changeRoute('/dashboard')}>
                                     Dashboard
                                 </Button>
-                                <Button color={tasks ? 'secondary' : 'transparent'} className='rounded-pill' onClick={() => changeRoute('/tasks')}>
+                                <Button style={{ backgroundColor: tasks ? '#fff' : '#406882', color: tasks ? '#406882' : '#fff' }} color="default" className='rounded-pill' onClick={() => changeRoute('/tasks')}>
                                     Task
                                 </Button>
                             </ButtonGroup>
                         </NavItem>
                         <UncontrolledDropdown>
                             <DropdownToggle caret nav>
-                                <FaUserCircle className='me-2' />
-                                {user ? user.fullname : 'User'}
+                                <FaUserCircle className='me-2' style={{ color: '#fff' }} />
+                                <span style={{ color: '#fff' }}>{user ? user.fullname : 'User'}</span>
                             </DropdownToggle>
                             <DropdownMenu end>
                                 <DropdownItem onClick={logoutUser}>
